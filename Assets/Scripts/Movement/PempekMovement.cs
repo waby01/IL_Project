@@ -19,6 +19,7 @@ public class PempekMovement : MonoBehaviour
     {
 
         rb = GetComponent<Rigidbody>();
+        Time.timeScale = 1;
     }
 
     void FixedUpdate()
@@ -32,12 +33,6 @@ public class PempekMovement : MonoBehaviour
             movement += transform.forward * moveSpeed * Time.deltaTime;
             isMoving = true;
         }
-
-
-
-
-
-
 
         if (Input.GetKey(KeyCode.A))
         {

@@ -1329,7 +1329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2256967257766169119, guid: d8dbac16eb17d1f4f878f08661628c61, type: 3}
       propertyPath: remainingTime
-      value: 10
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3028506065186282074, guid: d8dbac16eb17d1f4f878f08661628c61, type: 3}
       propertyPath: m_IsActive
@@ -1940,7 +1940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: {x: 0.1, y: 0.5, z: 0.3}
-  ShoulderOffset: {x: 2.26, y: 2.27, z: -28.37}
+  ShoulderOffset: {x: 0.36, y: 0, z: -8.81}
   VerticalArmLength: 0.4
   CameraSide: 1
   CameraDistance: 2
@@ -2072,6 +2072,7 @@ GameObject:
   - component: {fileID: 907489319}
   - component: {fileID: 907489320}
   - component: {fileID: 907489321}
+  - component: {fileID: 907489322}
   m_Layer: 0
   m_Name: MC_Kapal
   m_TagString: Untagged
@@ -2087,14 +2088,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907489318}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.051999584, y: -0.0432382, z: 0.0022535333, w: 0.9977081}
   m_LocalPosition: {x: -36.9, y: 26.2, z: 43.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1999376306}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5.967, y: -4.963, z: 0}
 --- !u!54 &907489320
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2118,7 +2119,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
@@ -2139,6 +2140,29 @@ MonoBehaviour:
   rotationSpeed: 3
   smoothDamp: 0.3
   propellerAnimator: {fileID: 1999376305}
+--- !u!136 &907489322
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907489318}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5.2
+  m_Height: 20.82
+  m_Direction: 2
+  m_Center: {x: 1.96, y: -5.3, z: -0.47}
 --- !u!64 &922906306
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2682,8 +2706,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194967387}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.640003, y: 28.87, z: 13.030001}
+  m_LocalRotation: {x: 0.051999584, y: -0.0432382, z: 0.0022535333, w: 0.9977081}
+  m_LocalPosition: {x: -35.610683, y: 26.805744, z: 32.713898}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3775,7 +3799,7 @@ Transform:
   m_GameObject: {fileID: 1886079899}
   serializedVersion: 2
   m_LocalRotation: {x: 0.005486569, y: 0.48219383, z: -0.0030199355, w: 0.8760422}
-  m_LocalPosition: {x: -34.640003, y: 28.87, z: 13.030001}
+  m_LocalPosition: {x: -35.610683, y: 26.805744, z: 32.713898}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3840,15 +3864,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4269188912248146939, guid: a81930b28e4bd7944bcbd46a593acefd, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4269188912248146939, guid: a81930b28e4bd7944bcbd46a593acefd, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4269188912248146939, guid: a81930b28e4bd7944bcbd46a593acefd, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4269188912248146939, guid: a81930b28e4bd7944bcbd46a593acefd, type: 3}
       propertyPath: m_LocalPosition.x

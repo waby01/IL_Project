@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class LoadPrefs : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private float controllerSensitivity;
+
     void Start()
     {
-        
+        // Memuat sensitivitas dari PlayerPrefs
+        controllerSensitivity = PlayerPrefs.GetInt("controllerSensitivity", 4);
+
+        // Terapkan sensitivitas pada kontrol pemain
+        ApplyControllerSensitivity(controllerSensitivity);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ApplyControllerSensitivity(float sensitivity)
     {
-        
+        // Contoh penerapan: Ubah sensitivitas input
+        // Misal untuk kamera atau kontrol pemain
+        Debug.Log("Controller Sensitivity set to: " + sensitivity);
+
+        // Implementasikan logika khusus untuk kontrol sensitivitas di game
     }
 }

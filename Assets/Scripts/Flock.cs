@@ -5,6 +5,16 @@ using UnityEngine;
 
 public class Flock : MonoBehaviour
 {
+<<<<<<< Updated upstream:Assets/Scripts/Flock.cs
+=======
+    [Header("UI Setup")]
+    public GameObject interactUiPrefab;
+    private GameObject interactUiInstance;
+
+    [Header("Game Over Setup")]
+    public GameOverScreen gameOverScreen;
+
+>>>>>>> Stashed changes:Assets/Scripts/InGame/Flock.cs
     [Header("Spawn Setup")]
     [SerializeField] private FlockUnit flockUnitPrefab;
     [SerializeField] private int flockSize;
@@ -69,13 +79,38 @@ public class Flock : MonoBehaviour
     private void Start()
     {
         GenerateUnits();
+<<<<<<< Updated upstream:Assets/Scripts/Flock.cs
+=======
+
+        if (interactUiPrefab != null)
+        {
+            interactUiInstance = Instantiate(interactUiPrefab);
+            interactUiInstance.SetActive(false);
+        }
+
+        if (gameOverScreen == null)
+        {
+            gameOverScreen = FindObjectOfType<GameOverScreen>();
+            if (gameOverScreen == null)
+            {
+                Debug.LogError("GameOverScreen not found in the scene!");
+            }
+        }
+>>>>>>> Stashed changes:Assets/Scripts/InGame/Flock.cs
     }
 
     private void Update()
     {
         for (int i = 0; i < allUnits.Length; i++)
         {
+<<<<<<< Updated upstream:Assets/Scripts/Flock.cs
             allUnits[i].MoveUnit();
+=======
+            if (allUnits[i] != null)
+            {
+                allUnits[i].MoveUnit();
+            }
+>>>>>>> Stashed changes:Assets/Scripts/InGame/Flock.cs
         }
     }
 
@@ -93,4 +128,23 @@ public class Flock : MonoBehaviour
             allUnits[i].InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));
         }
     }
+<<<<<<< Updated upstream:Assets/Scripts/Flock.cs
+=======
+
+    public void RemoveUnit(FlockUnit unit)
+    {
+        List<FlockUnit> unitList = new List<FlockUnit>(allUnits);
+        unitList.Remove(unit);
+        allUnits = unitList.ToArray();
+    }
+
+    public void TriggerGameOver(string message)
+    {
+        if (gameOverScreen != null)
+        {
+            Time.timeScale = 0;
+            gameOverScreen.setup(message);
+        }
+    }
+>>>>>>> Stashed changes:Assets/Scripts/InGame/Flock.cs
 }

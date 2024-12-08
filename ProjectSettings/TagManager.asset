@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - QuestManager
+  - hiu
+  - IkanBadut
+  - IkanBiru
+  - IkanSalmond
+  - Submarine
+  - IkanGendut
+  - Coral
+  - IkanBuntal
   layers:
   - Default
   - TransparentFX

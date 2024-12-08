@@ -13,6 +13,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject comfirmationPromt = null;
     [SerializeField] private float defaulVolume = 1.0f;
 
+<<<<<<< Updated upstream
     [Header("Gameplay Settings")]
     [SerializeField] private TMP_Text ControllerSenTextValue = null;
     [SerializeField] private Slider ControllerSenSlider = null;
@@ -70,12 +71,32 @@ public class MenuController : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndext;
         resolutionDropdown.RefreshShownValue();
-    }
+=======
 
-    public void SetResolution(int resolutionIndex)
+    private void Start()
     {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        PlayerPrefs.DeleteAll();
+        AudioClip clip = Resources.Load<AudioClip>("Audio/MainMenuMusic");
+        if (clip != null && mainMenuMusicSource != null)
+        {
+            mainMenuMusicSource.clip = clip;
+            mainMenuMusicSource.Play();
+        }
+        else
+        {
+            Debug.LogError("Audio clip tidak ditemukan atau AudioSource belum diatur!");
+        }
+
+
+        float savedVolume = PlayerPrefs.GetFloat("masterVolume", defaultVolume);
+        SetVolume(savedVolume);
+        volumeSlider.value = savedVolume;
+
+        if (mainMenuMusicSource != null)
+        {
+            mainMenuMusicSource.volume = savedVolume;
+        }
+>>>>>>> Stashed changes
     }
 
     public void NewGameDialogYes()
@@ -83,6 +104,7 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene(_newGameLevel);
     }
 
+<<<<<<< Updated upstream
     public void LoadGameDialogYes()
     {
         if(PlayerPrefs.HasKey("SavedLevel"))
@@ -95,6 +117,8 @@ public class MenuController : MonoBehaviour
             noSaveGameDialog.SetActive(true);
         }
     }
+=======
+>>>>>>> Stashed changes
 
     public void ExitButton()
     {
@@ -103,17 +127,43 @@ public class MenuController : MonoBehaviour
 
     public void SetVolume(float volume)
     {
+<<<<<<< Updated upstream
         AudioListener.volume = volume;
         volumeTextValue.text = volume.ToString("0.0");
+=======
+        if (volume == 0)
+        {
+            volume = defaultVolume;
+        }
+
+        AudioListener.volume = volume;
+        volumeTextValue.text = volume.ToString("0.0");
+
+        if (mainMenuMusicSource != null)
+        {
+            mainMenuMusicSource.volume = volume;
+        }
+>>>>>>> Stashed changes
     }
 
     public void VolumeApply()
     {
+<<<<<<< Updated upstream
         PlayerPrefs.SetFloat("masterVolume", AudioListener.volume);
         StartCoroutine(ConfirmationBox());
     }
 
     public void SetControllerSen(float sensitivity)
+=======
+        PlayerPrefs.SetFloat("BGMVolume", mainMenuMusicSource.volume);
+        PlayerPrefs.SetFloat("SoundVolume", AudioListener.volume);
+        PlayerPrefs.Save();
+        StartCoroutine(ConfirmationBox());
+    }
+
+
+    public void ResetButton(string menuType)
+>>>>>>> Stashed changes
     {
         mainControllerSen = Mathf.RoundToInt(sensitivity);
         ControllerSenTextValue.text = sensitivity.ToString("0");
@@ -190,6 +240,7 @@ public class MenuController : MonoBehaviour
             volumeTextValue.text = defaulVolume.ToString("0.0");
             VolumeApply();
         }
+<<<<<<< Updated upstream
 
         if(MenuType == "Gameplay")
         {
@@ -199,6 +250,8 @@ public class MenuController : MonoBehaviour
             invertYToggle.isOn = false;
             GameplayApply();
         }
+=======
+>>>>>>> Stashed changes
     }
 
     public IEnumerator ConfirmationBox()

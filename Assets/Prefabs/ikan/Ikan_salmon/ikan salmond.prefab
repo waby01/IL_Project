@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae220f1c9b3da344bbc7beb7b94588ec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.02611
+      value: 16.72
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae220f1c9b3da344bbc7beb7b94588ec, type: 3}
       propertyPath: m_LocalPosition.z
@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ikan salmond
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ae220f1c9b3da344bbc7beb7b94588ec, type: 3}
+      propertyPath: m_TagString
+      value: IkanSalmond
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -78,6 +82,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ae220f1c9b3da344bbc7beb7b94588ec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4187250676841544670}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ae220f1c9b3da344bbc7beb7b94588ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8281184080722016549}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ae220f1c9b3da344bbc7beb7b94588ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2655964171723785981}
   m_SourcePrefab: {fileID: 100100000, guid: ae220f1c9b3da344bbc7beb7b94588ec, type: 3}
 --- !u!1 &5987924251452194563 stripped
 GameObject:
@@ -118,8 +128,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FOVAngle: 270
-  smoothDamp: 1
+  smoothDamp: 2
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   directionsToCheckWhenAvoidingObstacles: []
+--- !u!114 &8281184080722016549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5987924251452194563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e1493a369404b428b4c3c5c72e818c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactUi: {fileID: 8809733961530298551, guid: 8899cd479c29a804ba263eb54c8113c3, type: 3}
+--- !u!136 &-2655964171723785981
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5987924251452194563}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.04
+  m_Height: 6.84
+  m_Direction: 2
+  m_Center: {x: 0.28, y: -0.3, z: 0.02}

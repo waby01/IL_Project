@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PempekMovement : MonoBehaviour
 {
@@ -15,23 +16,47 @@ public class PempekMovement : MonoBehaviour
     private float verticalVelocity = 0f;
     public Animator propellerAnimator;
 
+    [Header("Audio Settings")]
+    public AudioSource interactAudio;
+    public PauseMenuOption pauseMenu;
+
+    [Header("Stamina Settings")]
+    public float maxStamina = 100f;
+    public float staminaDrainRate = 20f;
+    public float staminaRegenRate = 10f;
+    public Image staminaBar; 
+
+    private float currentStamina; 
+
     void Start()
     {
-
         rb = GetComponent<Rigidbody>();
         Time.timeScale = 1;
+        currentStamina = maxStamina;
+        if (staminaBar != null)
+        {
+            staminaBar.fillAmount = 1f;
+        }
     }
 
     void FixedUpdate()
     {
-
         Vector3 movement = Vector3.zero;
         bool isMoving = false;
 
+        bool isBoosting = Input.GetKey(KeyCode.LeftShift) && currentStamina > 0;
+
         if (Input.GetKey(KeyCode.W))
         {
-            movement += transform.forward * moveSpeed * Time.deltaTime;
+            float speedMultiplier = isBoosting ? 2f : 1f;
+            movement += transform.forward * moveSpeed * speedMultiplier * Time.deltaTime;
             isMoving = true;
+
+            if (isBoosting)
+            {
+                currentStamina -= staminaDrainRate * Time.deltaTime;
+                if (currentStamina < 0) currentStamina = 0;
+            }
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -45,13 +70,12 @@ public class PempekMovement : MonoBehaviour
             isMoving = true;
         }
 
-        // Input naik (Space) dan turun (E)
         if (Input.GetKey(KeyCode.Space))
         {
             targetVerticalSpeed = verticalSpeed;
             isMoving = true;
         }
-        else if (Input.GetKey(KeyCode.E))
+        else if (Input.GetKey(KeyCode.S))
         {
             targetVerticalSpeed = -verticalSpeed;
             isMoving = true;
@@ -61,13 +85,10 @@ public class PempekMovement : MonoBehaviour
             targetVerticalSpeed = 0f;
         }
 
-
         currentVerticalSpeed = Mathf.SmoothDamp(currentVerticalSpeed, targetVerticalSpeed, ref verticalVelocity, smoothDamp);
         Vector3 verticalMovement = transform.up * currentVerticalSpeed * Time.deltaTime;
 
-
         rb.MovePosition(rb.position + movement + verticalMovement);
-
 
         if (movement != Vector3.zero)
         {
@@ -75,7 +96,33 @@ public class PempekMovement : MonoBehaviour
             rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
+        if (!isBoosting && currentStamina < maxStamina)
+        {
+            currentStamina += staminaRegenRate * Time.deltaTime;
+            if (currentStamina > maxStamina) currentStamina = maxStamina;
+        }
+
+        if (staminaBar != null)
+        {
+            staminaBar.fillAmount = currentStamina / maxStamina;
+        }
 
         propellerAnimator.SetBool("IsMoving", isMoving);
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            PlayInteractAudio();
+        }
+    }
+
+    private void PlayInteractAudio()
+    {
+        if (interactAudio != null && pauseMenu != null)
+        {
+            float volume = pauseMenu.soundSlider.value;
+            interactAudio.volume = volume;
+            interactAudio.Play();
+            Debug.Log("Interacted! Audio played with volume: " + volume);
+        }
     }
 }
